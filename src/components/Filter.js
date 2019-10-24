@@ -1,6 +1,5 @@
 import React from "react";
 import TextBox from "./TextBox";
-import CheckBox from "./CheckBox";
 import { Select } from "./Select";
 
 class Filter extends React.Component {

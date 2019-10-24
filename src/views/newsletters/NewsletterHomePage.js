@@ -1,12 +1,11 @@
 import React from "react";
-import { selectNewsletters, selectNewslettersWithUsersCount } from "../../selectors";
+import { selectNewslettersWithUsersCount } from "../../selectors";
 import { connect } from "react-redux";
 import { deleteNewsletter, removeNewsletterOfUsers } from "../../action";
 import Card from "../../components/Card";
 import { NEWSLETTERS_EDIT_ROUTE, NEWSLETTERS_DETAIL_ROUTE } from "../../consts";
 
 const mapStateToProps = state => ({
-  // newsletters: selectNewsletters(state),
   newsletters: selectNewslettersWithUsersCount(state)
 });
 
@@ -28,7 +27,7 @@ class NewsletterHomePageRender extends React.Component {
             return (
               <div className="panel" key={newsletter.id}>
                 <Card title={newsletter.title}>
-                  <p>{newsletter.nbusers}</p>
+                  <p>Nb d'utilisateurs abonnés : {newsletter.nbusers}</p>
                   <div className="button-container">
                     <button
                       className="button"

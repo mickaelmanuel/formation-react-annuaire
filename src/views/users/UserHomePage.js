@@ -1,11 +1,9 @@
 import React from "react";
 import { selectUsers } from "../../selectors";
 import { connect } from "react-redux";
-import { updateNewsletterSubscriptionOfUser, deleteUser } from "../../action";
+import { deleteUser } from "../../action";
 import Filter from "../../components/Filter";
-import produce from "immer";
 import Card from "../../components/Card";
-import CheckBox from "../../components/CheckBox";
 import { USERS_EDIT_ROUTE, USERS_DETAIL_ROUTE } from "../../consts";
 
 const mapStateToProps = state => ({
@@ -13,7 +11,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateNewsletterSubscriptionOfUser,
   deleteUser
 };
 
@@ -41,14 +38,13 @@ class UserHomePageRender extends React.Component {
         x.mail.toLowerCase().indexOf(userToSearch.mail.toLowerCase()) !== -1 &&
         (userToSearch.newsletter !== "all"
           ? userToSearch.newsletter === "yes"
-            ? x.newsletter === true
-            : x.newsletter === false
-          : x.newsletter == x.newsletter)
+            ? x.newsletters.length > 0
+            : x.newsletters.length === 0
+          : true)
     );
   }
 
   render() {
-    var updateNewsletterSubscriptionOfUser = this.props.updateNewsletterSubscriptionOfUser;
     var deleteUser = this.props.deleteUser;
 
     return (
@@ -67,23 +63,11 @@ class UserHomePageRender extends React.Component {
               <div className="panel" key={user.username}>
                 <Card title={user.username}>
                   <p>{user.mail}</p>
-                  <div>
-                    <CheckBox
-                      name="newsletter"
-                      checked={user.newsletter}
-                      onChange={() => {
-                        updateNewsletterSubscriptionOfUser(user.username);
-                        var index = this.state.users.findIndex(x => x.username === user.username);
-                        var newstate = produce(this.state, draftState => {
-                          draftState.users[index].newsletter = !this.state.users[index].newsletter;
-                        });
-                        this.setState({
-                          users: newstate.users
-                        });
-                      }}
-                      label={user.newsletter ? "Abonné" : "Non abonné"}
-                    />
-                  </div>
+                  <p>
+                    {user.newsletters.length > 0
+                      ? `Abonné à ${user.newsletters.length} newsletter(s)`
+                      : "Aucun abonnement"}
+                  </p>
                   <div className="button-container">
                     <button
                       className="button"
