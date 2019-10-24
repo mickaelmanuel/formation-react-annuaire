@@ -21,8 +21,30 @@ class UserHomePageRender extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: this.props.users
+      users: this.props.users,
+      userToSearch: {
+        username: "",
+        firstname: "",
+        lastname: "",
+        mail: "",
+        newsletter: "all"
+      }
     };
+  }
+
+  filteredList(userToSearch) {
+    return this.props.users.filter(
+      x =>
+        x.username.toLowerCase().indexOf(userToSearch.username.toLowerCase()) !== -1 &&
+        x.firstname.toLowerCase().indexOf(userToSearch.firstname.toLowerCase()) !== -1 &&
+        x.lastname.toLowerCase().indexOf(userToSearch.lastname.toLowerCase()) !== -1 &&
+        x.mail.toLowerCase().indexOf(userToSearch.mail.toLowerCase()) !== -1 &&
+        (userToSearch.newsletter !== "all"
+          ? userToSearch.newsletter === "yes"
+            ? x.newsletter === true
+            : x.newsletter === false
+          : x.newsletter == x.newsletter)
+    );
   }
 
   render() {
@@ -32,25 +54,15 @@ class UserHomePageRender extends React.Component {
     return (
       <div>
         <Filter
+          value={this.state.userToSearch}
           onChange={userToSearch => {
             this.setState({
-              users: this.props.users.filter(
-                x =>
-                  x.username.toLowerCase().indexOf(userToSearch.username.toLowerCase()) !== -1 &&
-                  x.firstname.toLowerCase().indexOf(userToSearch.firstname.toLowerCase()) !== -1 &&
-                  x.lastname.toLowerCase().indexOf(userToSearch.lastname.toLowerCase()) !== -1 &&
-                  x.mail.toLowerCase().indexOf(userToSearch.mail.toLowerCase()) !== -1 &&
-                  (userToSearch.newsletter !== "all"
-                    ? userToSearch.newsletter === "yes"
-                      ? x.newsletter === true
-                      : x.newsletter === false
-                    : x.newsletter == x.newsletter)
-              )
+              userToSearch: userToSearch
             });
           }}
         />
         <div className="panels">
-          {this.state.users.map(user => {
+          {this.filteredList(this.state.userToSearch).map(user => {
             return (
               <div className="panel" key={user.username}>
                 <Card title={user.username}>

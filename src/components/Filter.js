@@ -4,13 +4,10 @@ import CheckBox from "./CheckBox";
 import { Select } from "./Select";
 
 class Filter extends React.Component {
-  state = {
-    username: "",
-    firstname: "",
-    lastname: "",
-    mail: "",
-    newsletter: "all"
-  };
+  constructor(props) {
+    super(props);
+    this.state = props.value;
+  }
 
   render() {
     return (
