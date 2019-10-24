@@ -1,0 +1,37 @@
+import React from "react";
+import { connect } from "react-redux";
+import { selectUsers } from "../../selectors";
+import { USERS_EDIT_ROUTE } from "../../consts";
+
+const mapStateToProps = state => ({
+  users: selectUsers(state)
+});
+
+const mapDispatchToProps = null;
+
+const UserDetailPageRender = ({ username, users, history }) => {
+  const userIndex = users.findIndex(x => x.username === username);
+  const user = users[userIndex];
+  return (
+    <div>
+      <h3>Bienvenue sur la page detail de l'utilisateur : {user.username}</h3>
+      <div>Username : {user.username}</div>
+      <div>Prénom : {user.firstname}</div>
+      <div>Nom : {user.lastname}</div>
+      <div>Email : {user.mail}</div>
+      <div>newsletter : {user.newsletter ? "Oui" : "Non"}</div>
+      <button
+        onClick={() => {
+          history.push(USERS_EDIT_ROUTE + username);
+        }}
+      >
+        Editer
+      </button>
+    </div>
+  );
+};
+
+export const UserDetailPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserDetailPageRender);
