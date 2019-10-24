@@ -38,7 +38,7 @@ class AddEditUserRender extends React.Component {
           firstname: user.firstname,
           lastname: user.lastname,
           mail: user.mail,
-          newsletter: user.newsletter,
+          premiumaccount: user.premiumaccount,
           errorMessage: ""
         };
       }
@@ -51,7 +51,7 @@ class AddEditUserRender extends React.Component {
       firstname: "",
       lastname: "",
       mail: "",
-      newsletter: false,
+      premiumaccount: false,
       errorMessage: ""
     };
   }
@@ -103,10 +103,10 @@ class AddEditUserRender extends React.Component {
             }}
           />
           <CheckBox
-            label="Souscrit à la newsletter"
-            checked={this.state.newsletter}
+            label="Abonnement premium"
+            checked={this.state.premiumaccount}
             onChange={e => {
-              this.setState({ newsletter: !this.state.newsletter });
+              this.setState({ premiumaccount: !this.state.premiumaccount });
             }}
           />
           <button
@@ -158,7 +158,7 @@ class AddEditUserRender extends React.Component {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 mail: this.state.mail,
-                newsletter: this.state.newsletter
+                premiumaccount: this.state.premiumaccount
               };
 
               if (this.props.isEditMode) {
@@ -170,7 +170,7 @@ class AddEditUserRender extends React.Component {
                   firstname: "",
                   lastname: "",
                   mail: "",
-                  newsletter: false,
+                  premiumaccount: false,
                   errorMessage: ""
                 });
               }

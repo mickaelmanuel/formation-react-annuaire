@@ -19,7 +19,7 @@ const NewsletterDetailPageRender = ({ id, newsletters, history }) => {
 
       <button
         onClick={() => {
-          history.push("../../" + NEWSLETTERS_EDIT_ROUTE + id);
+          history.push("../.." + NEWSLETTERS_EDIT_ROUTE.create(id));
         }}
       >
         Editer

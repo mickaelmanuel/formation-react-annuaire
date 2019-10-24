@@ -1,6 +1,6 @@
 import {
   ADD_USER,
-  UPDATE_NEWSLETTER_SUBSCRIPTION_OF_USER,
+  UPDATE_ACCOUNT_SUBSCRIPTION_OF_USER,
   DELETE_USER,
   UPDATE_USER,
   SEARCH_USER,
@@ -16,7 +16,7 @@ export const initialState = [
     firstname: "Mickael",
     lastname: "Manuel",
     mail: "mickael.manuel@adevinta.com",
-    newsletter: false,
+    premiumaccount: false,
     newsletters: [randomNewsletterId()]
   },
   {
@@ -24,7 +24,7 @@ export const initialState = [
     firstname: "Doriane",
     lastname: "Bonfils",
     mail: "doriane.bonfils@adevinta.com",
-    newsletter: true,
+    premiumaccount: true,
     newsletters: [randomNewsletterId()]
   },
   {
@@ -32,7 +32,7 @@ export const initialState = [
     firstname: "Pierre",
     lastname: "Bouille",
     mail: "pierre.bouille@adevinta.com",
-    newsletter: false,
+    premiumaccount: false,
     newsletters: [randomNewsletterId()]
   },
   {
@@ -40,7 +40,7 @@ export const initialState = [
     firstname: "Sophie",
     lastname: "Martins",
     mail: "Sophie.Martins@adevinta.com",
-    newsletter: false,
+    premiumaccount: false,
     newsletters: [randomNewsletterId()]
   },
   {
@@ -48,7 +48,7 @@ export const initialState = [
     firstname: "Laeticia",
     lastname: "Frieux",
     mail: "Laeticia.Frieux@adevinta.com",
-    newsletter: true,
+    premiumaccount: true,
     newsletters: [randomNewsletterId()]
   },
   {
@@ -56,7 +56,7 @@ export const initialState = [
     firstname: "Karine",
     lastname: "Jaulin",
     mail: "k.jaulin@gmail.com",
-    newsletter: false,
+    premiumaccount: false,
     newsletters: [randomNewsletterId()]
   }
 ];
@@ -66,7 +66,7 @@ const initialUser = {
   firstname: "",
   lastname: "",
   mail: "",
-  newsletter: false,
+  premiumaccount: false,
   newsletters: []
 };
 
@@ -77,10 +77,10 @@ export const usersReducer = (state = initialState, action) => {
         draftState.push({ ...initialUser, ...action.payload.user });
       });
 
-    case UPDATE_NEWSLETTER_SUBSCRIPTION_OF_USER:
+    case UPDATE_ACCOUNT_SUBSCRIPTION_OF_USER:
       var index = state.findIndex(x => x.username === action.payload);
       return produce(state, draftState => {
-        draftState[index].newsletter = !state[index].newsletter;
+        draftState[index].premiumaccount = !state[index].premiumaccount;
       });
 
     case DELETE_USER:

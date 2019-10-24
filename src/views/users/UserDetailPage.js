@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectUsers } from "../../selectors";
+import { selectUsers, selectNewsletters } from "../../selectors";
 import { USERS_EDIT_ROUTE } from "../../consts";
 
 const mapStateToProps = state => ({
   users: selectUsers(state)
+  //  newsletters: selectNewslettersOfUser(state)
 });
 
 const mapDispatchToProps = null;
@@ -19,10 +20,18 @@ const UserDetailPageRender = ({ username, users, history }) => {
       <div>Prénom : {user.firstname}</div>
       <div>Nom : {user.lastname}</div>
       <div>Email : {user.mail}</div>
-      <div>newsletter : {user.newsletter ? "Oui" : "Non"}</div>
+      <div>Abonnement : {user.premiumaccount ? "Premium" : "Aucun"}</div>
+      <div>
+        Newsletters :
+        <ul>
+          {user.newsletters.map(newsletter => {
+            return <li>{newsletter}</li>;
+          })}
+        </ul>
+      </div>
       <button
         onClick={() => {
-          history.push(USERS_EDIT_ROUTE + username);
+          history.push(USERS_EDIT_ROUTE.create(username));
         }}
       >
         Editer

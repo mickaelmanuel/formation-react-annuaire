@@ -69,19 +69,19 @@ class Filter extends React.Component {
         </div>
         <div className="panelFilter">
           <Select
-            label="Newsletter :"
-            name="newsletter"
-            value={this.state.newsletter}
+            label="Abonnés :"
+            name="premiumaccount"
+            value={this.state.premiumaccount}
             options={[
               { key: "all", text: "Tous" },
-              { key: "yes", text: "Abonnés" },
+              { key: "yes", text: "Premium" },
               { key: "no", text: "Non abonnés" }
             ]}
             onChange={e => {
               let tmp = { ...this.state };
               console.log(e.target.value);
-              tmp.newsletter = e.target.value;
-              this.setState({ newsletter: e.target.value });
+              tmp.premiumaccount = e.target.value;
+              this.setState({ premiumaccount: e.target.value });
               this.props.onChange(tmp);
             }}
           />

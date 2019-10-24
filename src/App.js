@@ -44,11 +44,11 @@ class App extends React.Component {
           <Route exact path={USERS_HOME_ROUTE} render={props => <UserHomePage history={props.history} />} />
           <Route exact path={USERS_ADD_ROUTE} render={props => <UserAddPage history={props.history} />} />
           <Route
-            path={USERS_EDIT_ROUTE + ":username"}
+            path={USERS_EDIT_ROUTE.pattern}
             render={props => <UserEditPage username={props.match.params.username} history={props.history} />}
           />
           <Route
-            path={USERS_DETAIL_ROUTE + ":username"}
+            path={USERS_DETAIL_ROUTE.pattern}
             render={props => <UserDetailPage username={props.match.params.username} history={props.history} />}
           />
 
@@ -56,11 +56,11 @@ class App extends React.Component {
 
           <Route exact path={NEWSLETTERS_ADD_ROUTE} render={props => <NewsletterAddPage history={props.history} />} />
           <Route
-            path={NEWSLETTERS_EDIT_ROUTE + ":id"}
+            path={NEWSLETTERS_EDIT_ROUTE.pattern}
             render={props => <NewsletterEditPage id={props.match.params.id} history={props.history} />}
           />
           <Route
-            path={NEWSLETTERS_DETAIL_ROUTE + ":id"}
+            path={NEWSLETTERS_DETAIL_ROUTE.pattern}
             render={props => <NewsletterDetailPage id={props.match.params.id} history={props.history} />}
           />
 

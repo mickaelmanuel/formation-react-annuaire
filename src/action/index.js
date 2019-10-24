@@ -1,5 +1,5 @@
 export const ADD_USER = "ADD_USER";
-export const UPDATE_NEWSLETTER_SUBSCRIPTION_OF_USER = "UPDATE_NEWSLETTER_SUBSCRIPTION_OF_USER";
+export const UPDATE_ACCOUNT_SUBSCRIPTION_OF_USER = "UPDATE_ACCOUNT_SUBSCRIPTION_OF_USER";
 export const DELETE_USER = "DELETE_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const ADD_NEWSLETTER = "ADD_NEWSLETTER";
@@ -14,9 +14,9 @@ export const addUser = user => {
   };
 };
 
-export const updateNewsletterSubscriptionOfUser = username => {
+export const updateAccountSubscriptionOfUser = username => {
   return {
-    type: UPDATE_NEWSLETTER_SUBSCRIPTION_OF_USER,
+    type: UPDATE_ACCOUNT_SUBSCRIPTION_OF_USER,
     payload: username
   };
 };

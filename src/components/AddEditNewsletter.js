@@ -3,6 +3,7 @@ import TextBox from "./TextBox";
 import { addNewsletter, updateNewsletter } from "../action";
 import { connect } from "react-redux";
 import { selectNewsletters } from "../selectors";
+import { NEWSLETTERS_HOME_ROUTE } from "../consts";
 
 const mapStateToProps = state => ({
   newsletters: selectNewsletters(state)
@@ -91,7 +92,7 @@ class AddEditNewsletterRender extends React.Component {
               }
 
               if (manageHistoryRedirection) {
-                this.props.history.push("/newsletters");
+                this.props.history.push(NEWSLETTERS_HOME_ROUTE);
               }
             }}
           >

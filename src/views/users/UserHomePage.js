@@ -24,6 +24,7 @@ class UserHomePageRender extends React.Component {
         firstname: "",
         lastname: "",
         mail: "",
+        premiumaccount: "all",
         newsletter: "all"
       }
     };
@@ -40,6 +41,11 @@ class UserHomePageRender extends React.Component {
           ? userToSearch.newsletter === "yes"
             ? x.newsletters.length > 0
             : x.newsletters.length === 0
+          : true) &&
+        (userToSearch.premiumaccount !== "all"
+          ? userToSearch.premiumaccount === "yes"
+            ? x.premiumaccount === true
+            : x.premiumaccount === false
           : true)
     );
   }
@@ -61,7 +67,7 @@ class UserHomePageRender extends React.Component {
           {this.filteredList(this.state.userToSearch).map(user => {
             return (
               <div className="panel" key={user.username}>
-                <Card title={user.username}>
+                <Card title={user.username + (user.premiumaccount ? " ⭐ " : "")}>
                   <p>{user.mail}</p>
                   <p>
                     {user.newsletters.length > 0
@@ -71,13 +77,13 @@ class UserHomePageRender extends React.Component {
                   <div className="button-container">
                     <button
                       className="button"
-                      onClick={() => this.props.history.push(USERS_DETAIL_ROUTE + user.username)}
+                      onClick={() => this.props.history.push(USERS_DETAIL_ROUTE.create(user.username))}
                     >
                       Details
                     </button>
                     <button
                       className="button"
-                      onClick={() => this.props.history.push(USERS_EDIT_ROUTE + user.username)}
+                      onClick={() => this.props.history.push(USERS_EDIT_ROUTE.create(user.username))}
                     >
                       Editer
                     </button>

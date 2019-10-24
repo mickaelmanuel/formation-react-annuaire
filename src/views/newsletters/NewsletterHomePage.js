@@ -31,13 +31,13 @@ class NewsletterHomePageRender extends React.Component {
                   <div className="button-container">
                     <button
                       className="button"
-                      onClick={() => this.props.history.push(NEWSLETTERS_DETAIL_ROUTE + newsletter.id)}
+                      onClick={() => this.props.history.push(NEWSLETTERS_DETAIL_ROUTE.create(newsletter.id))}
                     >
                       Details
                     </button>
                     <button
                       className="button"
-                      onClick={() => this.props.history.push(NEWSLETTERS_EDIT_ROUTE + newsletter.id)}
+                      onClick={() => this.props.history.push(NEWSLETTERS_EDIT_ROUTE.create(newsletter.id))}
                     >
                       Editer
                     </button>
