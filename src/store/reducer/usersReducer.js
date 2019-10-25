@@ -4,7 +4,8 @@ import {
   DELETE_USER,
   UPDATE_USER,
   SEARCH_USER,
-  REMOVE_NEWSLETTER_OF_USERS
+  REMOVE_NEWSLETTER_OF_USERS,
+  UPDATE_USER_NEWSLETTERS
 } from "../../action";
 import produce from "immer";
 import { initialState as newsletters } from "./newslettersReducer";
@@ -103,6 +104,13 @@ export const usersReducer = (state = initialState, action) => {
             draftState[index].newsletters.splice(indexNewsletter, 1);
           }
         });
+      });
+
+    case UPDATE_USER_NEWSLETTERS:
+      var index = state.findIndex(x => x.username === action.payload.username);
+      console.log(action.payload);
+      return produce(state, draftState => {
+        draftState[index] = { ...draftState[index], newsletters: action.payload.newsletters };
       });
 
     default:

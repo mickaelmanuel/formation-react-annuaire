@@ -16,6 +16,7 @@ const NewsletterDetailPageRender = ({ id, newsletters, history }) => {
     <div>
       <h3>Bienvenue sur la page detail d'une newsletter : {newsletter.id}</h3>
       <div>Titre : {newsletter.title}</div>
+      <div>Contenu : {newsletter.content}</div>
 
       <button
         onClick={() => {

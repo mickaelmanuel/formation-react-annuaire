@@ -6,6 +6,7 @@ export const ADD_NEWSLETTER = "ADD_NEWSLETTER";
 export const UPDATE_NEWSLETTER = "UPDATE_NEWSLETTER";
 export const DELETE_NEWSLETTER = "DELETE_NEWSLETTER";
 export const REMOVE_NEWSLETTER_OF_USERS = "REMOVE_NEWSLETTER_OF_USERS";
+export const UPDATE_USER_NEWSLETTERS = "UPDATE_USER_NEWSLETTERS";
 
 export const addUser = user => {
   return {
@@ -60,5 +61,12 @@ export const removeNewsletterOfUsers = newsletterId => {
   return {
     type: REMOVE_NEWSLETTER_OF_USERS,
     payload: newsletterId
+  };
+};
+
+export const updateUserNewsletters = (username, newsletters) => {
+  return {
+    type: UPDATE_USER_NEWSLETTERS,
+    payload: { username: username, newsletters: newsletters }
   };
 };

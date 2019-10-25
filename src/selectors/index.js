@@ -2,8 +2,17 @@ export function selectUsers(state) {
   return state.users;
 }
 
-export function selectUsersByFilter(state, user) {
-  return state.users;
+export function selectUser(state, username) {
+  let user = state.users.find(x => x.username === username);
+
+  let newsletters = [];
+  if (user !== undefined && user.newsletters !== undefined) {
+    user.newsletters.forEach(newsletter => {
+      newsletters.push(state.newsletters.find(x => x.id === newsletter));
+    });
+  }
+
+  return { ...user, newslettersList: newsletters };
 }
 
 export function selectNewsletters(state) {

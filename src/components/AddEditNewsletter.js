@@ -27,6 +27,7 @@ class AddEditNewsletterRender extends React.Component {
           editMode: true,
           id: newsletter.id,
           title: newsletter.title,
+          content: newsletter.content,
           errorMessage: ""
         };
       }
@@ -38,6 +39,7 @@ class AddEditNewsletterRender extends React.Component {
       editMode: true,
       id: "",
       title: "",
+      content: "",
       errorMessage: ""
     };
   }
@@ -51,12 +53,19 @@ class AddEditNewsletterRender extends React.Component {
             name="title"
             placeholder="Titre"
             label="Titre :"
-            orientation={this.props.isEditMode ? "horizontal" : "vertical"}
             value={this.state.title}
             onChange={e => {
               this.setState({ title: e.target.value });
             }}
           />
+          <div>
+            <textarea
+              value={this.state.content}
+              onChange={e => {
+                this.setState({ contenu: e.target.value });
+              }}
+            />
+          </div>
 
           <button
             className="button"
@@ -78,7 +87,8 @@ class AddEditNewsletterRender extends React.Component {
 
               var newNewsletter = {
                 id: this.state.id,
-                title: this.state.title
+                title: this.state.title,
+                conten: this.state.content
               };
 
               if (this.props.isEditMode) {
@@ -87,6 +97,7 @@ class AddEditNewsletterRender extends React.Component {
                 this.props.addNewsletter({ newsletter: newNewsletter });
                 this.setState({
                   title: "",
+                  content: "",
                   errorMessage: ""
                 });
               }

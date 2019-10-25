@@ -63,38 +63,58 @@ class UserHomePageRender extends React.Component {
             });
           }}
         />
-        <div className="panels">
-          {this.filteredList(this.state.userToSearch).map(user => {
-            return (
-              <div className="panel" key={user.username}>
-                <Card title={user.username + (user.premiumaccount ? " ⭐ " : "")}>
-                  <p>{user.mail}</p>
-                  <p>
-                    {user.newsletters.length > 0
-                      ? `Abonné à ${user.newsletters.length} newsletter(s)`
-                      : "Aucun abonnement"}
-                  </p>
-                  <div className="button-container">
-                    <button
-                      className="button"
-                      onClick={() => this.props.history.push(USERS_DETAIL_ROUTE.create(user.username))}
-                    >
-                      Details
-                    </button>
-                    <button
-                      className="button"
-                      onClick={() => this.props.history.push(USERS_EDIT_ROUTE.create(user.username))}
-                    >
-                      Editer
-                    </button>
-                    <button className="button" onClick={() => deleteUser(user.username)}>
-                      Supprimer
-                    </button>
-                  </div>
-                </Card>
-              </div>
-            );
-          })}
+
+        <div className="container-table100">
+          <div className="wrap-table100">
+            <div className="table100">
+              <table>
+                <thead>
+                  <tr className="table100-head">
+                    <th className="column1">Utilisateur</th>
+                    <th className="column2">Premium</th>
+                    <th className="column3">Email</th>
+                    <th className="column4">Prenom</th>
+                    <th className="column5">Nom</th>
+                    <th className="column6">Nb newsletters</th>
+                    <th className="column7">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.filteredList(this.state.userToSearch).map(user => {
+                    return (
+                      <tr key={user.username}>
+                        <td> {user.username}</td>
+                        <td>{user.premiumaccount ? " ⭐ " : ""}</td>
+                        <td>{user.mail}</td>
+                        <td>{user.firstname}</td>
+                        <td>{user.lastname}</td>
+                        <td>{user.newsletters.length > 0 ? `${user.newsletters.length} newsletter(s)` : "Aucun"}</td>
+                        <td>
+                          <div className="button-container">
+                            <button
+                              className="button"
+                              onClick={() => this.props.history.push(USERS_DETAIL_ROUTE.create(user.username))}
+                            >
+                              Details
+                            </button>
+                            <button
+                              className="button"
+                              onClick={() => this.props.history.push(USERS_EDIT_ROUTE.create(user.username))}
+                            >
+                              Editer
+                            </button>
+                            <button className="button" onClick={() => deleteUser(user.username)}>
+                              Supprimer
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     );

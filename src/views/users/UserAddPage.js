@@ -1,11 +1,13 @@
 import React from "react";
 import { AddEditUser } from "../../components/AddEditUser";
+import Card from "../../components/Card";
 
 const UserAddPage = ({ history }) => {
   return (
-    <div>
-      <h3>Bienvenue sur la page d'ajout d'un utilisateur :</h3>
-      <AddEditUser history={history} />
+    <div className="container">
+      <Card title="Nouvel utilisateur ">
+        <AddEditUser history={history} />
+      </Card>
     </div>
   );
 };

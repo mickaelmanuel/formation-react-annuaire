@@ -7,6 +7,10 @@ html {
   letter-spacing: 0;
 }
 
+.root {
+  height: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -101,7 +105,7 @@ header a.active {
 
 .panel {
   margin: 0px 50px 50px 10px;
-  width: 250px;
+  width: 300px;
 }
 
 @media (max-width: 300px) {
@@ -135,11 +139,15 @@ header a.active {
   background-color: #3c8dbd;
 }
 
+.card > .card--container {
+  padding: 20px;
+}
+
 .card p {
   padding: 10px;
   font-size: 0.8rem;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   font-weight: 400;
   color: black;
   margin: 0;
@@ -163,7 +171,6 @@ header a.active {
   display: flex;
   flex-direction: column;
   padding: 12px;
-  max-width: 350px;
 }
 
 .vertical-input .input--label {
@@ -175,6 +182,7 @@ header a.active {
   letter-spacing: 0.1rem;
   padding-left: 0.2rem;
   padding-bottom: 0.5rem;
+  text-align: left;
 }
 
 /* Horizontal Input */
@@ -286,4 +294,203 @@ button:hover {
 button:active {
   position: relative;
   top: 1px;
+}
+
+.containerhorizontal {
+  display: flex;
+  margin-top: 50px;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  /* background: #c850c0;
+  background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+  background: linear-gradient(45deg, #4158d0, #c850c0); */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.wrap-table100 {
+  width: 95%;
+}
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+table * {
+  position: relative;
+}
+table td,
+table th {
+  padding-left: 8px;
+}
+table thead tr {
+  height: 50px;
+  background: #3c8dbd;
+}
+table tbody tr {
+  height: 50px;
+}
+table tbody tr:last-child {
+  border: 0;
+}
+table td,
+table th {
+  text-align: center;
+}
+table td.l,
+table th.l {
+  text-align: center;
+}
+table td.c,
+table th.c {
+  text-align: center;
+}
+table td.r,
+table th.r {
+  text-align: center;
+}
+.table100-head th {
+  font-size: 16px;
+  color: #fff;
+}
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+tbody tr {
+  font-size: 15px;
+  color: gray;
+}
+/* tbody tr:hover {
+  color: #555;
+  background-color: #f5f5f5;
+  cursor: pointer;
+} */
+
+.column1 {
+  max-width: 200px;
+}
+.column2 {
+  max-width: 50px;
+}
+.column3 {
+  max-width: 245px;
+}
+.column4 {
+  max-width: 120px;
+}
+.column5 {
+  max-width: 120px;
+}
+.column6 {
+  max-width: 150px;
+}
+
+.column7 {
+  width: 250px;
+}
+@media screen and (max-width: 992px) {
+  table {
+    display: block;
+  }
+  table > *,
+  table tr,
+  table td,
+  table th {
+    display: block;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 37px 0;
+  }
+  table tbody tr td {
+    padding-left: 40% !important;
+    margin-bottom: 24px;
+  }
+  table tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  table tbody tr td:before {
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.2;
+    font-weight: unset;
+    position: absolute;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+  table tbody tr td:nth-child(1):before {
+    content: "Date";
+  }
+  table tbody tr td:nth-child(2):before {
+    content: "Order ID";
+  }
+  table tbody tr td:nth-child(3):before {
+    content: "Name";
+  }
+  table tbody tr td:nth-child(4):before {
+    content: "Price";
+  }
+  table tbody tr td:nth-child(5):before {
+    content: "Quantity";
+  }
+  table tbody tr td:nth-child(6):before {
+    content: "Total";
+  }
+  .column4,
+  .column5,
+  .column6 {
+    text-align: left;
+  }
+  .column4,
+  .column5,
+  .column6,
+  .column1,
+  .column2,
+  .column3 {
+    width: 100%;
+  }
+  tbody tr {
+    font-size: 14px;
+  }
+}
+@media (max-width: 576px) {
+  .container-table100 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

@@ -22,39 +22,57 @@ class NewsletterHomePageRender extends React.Component {
     return (
       <div>
         <h3>Newsletters</h3>
-        <div className="panels">
-          {this.props.newsletters.map(newsletter => {
-            return (
-              <div className="panel" key={newsletter.id}>
-                <Card title={newsletter.title}>
-                  <p>Nb d'utilisateurs abonnés : {newsletter.nbusers}</p>
-                  <div className="button-container">
-                    <button
-                      className="button"
-                      onClick={() => this.props.history.push(NEWSLETTERS_DETAIL_ROUTE.create(newsletter.id))}
-                    >
-                      Details
-                    </button>
-                    <button
-                      className="button"
-                      onClick={() => this.props.history.push(NEWSLETTERS_EDIT_ROUTE.create(newsletter.id))}
-                    >
-                      Editer
-                    </button>
-                    <button
-                      className="button"
-                      onClick={() => {
-                        removeNewsletterOfUsers(newsletter.id);
-                        deleteNewsletter(newsletter.id);
-                      }}
-                    >
-                      Supprimer
-                    </button>
-                  </div>
-                </Card>
-              </div>
-            );
-          })}
+        <div className="container-table100">
+          <div className="wrap-table100">
+            <div className="table100">
+              <table>
+                <thead>
+                  <tr className="table100-head">
+                    <th className="column1">Titre</th>
+                    <th className="column2">Description</th>
+                    <th className="column3">Nb abonnés</th>
+                    <th className="column7">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.newsletters.map(newsletter => {
+                    return (
+                      <tr key={newsletter.id}>
+                        <td>{newsletter.title}</td>
+                        <td></td>
+                        <td>{newsletter.nbusers}</td>
+                        <td>
+                          <div className="button-container">
+                            <button
+                              className="button"
+                              onClick={() => this.props.history.push(NEWSLETTERS_DETAIL_ROUTE.create(newsletter.id))}
+                            >
+                              Details
+                            </button>
+                            <button
+                              className="button"
+                              onClick={() => this.props.history.push(NEWSLETTERS_EDIT_ROUTE.create(newsletter.id))}
+                            >
+                              Editer
+                            </button>
+                            <button
+                              className="button"
+                              onClick={() => {
+                                removeNewsletterOfUsers(newsletter.id);
+                                deleteNewsletter(newsletter.id);
+                              }}
+                            >
+                              Supprimer
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     );

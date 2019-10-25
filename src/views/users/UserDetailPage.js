@@ -1,41 +1,48 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectUsers, selectNewsletters } from "../../selectors";
+import { selectUser } from "../../selectors";
 import { USERS_EDIT_ROUTE } from "../../consts";
+import Card from "../../components/Card";
 
-const mapStateToProps = state => ({
-  users: selectUsers(state)
+const mapStateToProps = (state, ownprops) => ({
+  user: selectUser(state, ownprops.username)
   //  newsletters: selectNewslettersOfUser(state)
 });
 
 const mapDispatchToProps = null;
 
-const UserDetailPageRender = ({ username, users, history }) => {
-  const userIndex = users.findIndex(x => x.username === username);
-  const user = users[userIndex];
+const UserDetailPageRender = ({ username, user, history }) => {
   return (
-    <div>
-      <h3>Bienvenue sur la page detail de l'utilisateur : {user.username}</h3>
-      <div>Username : {user.username}</div>
-      <div>Prénom : {user.firstname}</div>
-      <div>Nom : {user.lastname}</div>
-      <div>Email : {user.mail}</div>
-      <div>Abonnement : {user.premiumaccount ? "Premium" : "Aucun"}</div>
-      <div>
-        Newsletters :
-        <ul>
-          {user.newsletters.map(newsletter => {
-            return <li>{newsletter}</li>;
-          })}
-        </ul>
-      </div>
-      <button
-        onClick={() => {
-          history.push(USERS_EDIT_ROUTE.create(username));
-        }}
-      >
-        Editer
-      </button>
+    <div className="container">
+      <Card title={user.username}>
+        <h3>Bienvenue sur la page detail de l'utilisateur : </h3>
+        <p>Username : {user.username}</p>
+        <p>Prénom : {user.firstname}</p>
+        <p>Nom : {user.lastname}</p>
+        <p>Email : {user.mail}</p>
+        <p>Abonnement : {user.premiumaccount ? "Premium" : "Aucun"}</p>
+        <div>
+          Newsletters :
+          <table>
+            <tbody>
+              {user.newslettersList.map(newsletter => {
+                return (
+                  <tr key={newsletter.id}>
+                    <td className="column1">{newsletter.title}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <button
+          onClick={() => {
+            history.push(USERS_EDIT_ROUTE.create(username));
+          }}
+        >
+          Editer
+        </button>
+      </Card>
     </div>
   );
 };
